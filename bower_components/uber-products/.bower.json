@@ -1,0 +1,28 @@
+{
+  "name": "uber-products",
+  "authors": [
+    "Keanu Lee <keanulee@google.com>"
+  ],
+  "description": "Displays a list of available Uber products given a latitude and longitude.",
+  "keywords": [
+    "polymer",
+    "web-components",
+    "uber"
+  ],
+  "main": "uber-products.html",
+  "homepage": "https://polymerlabs.github.io/uber-products/",
+  "dependencies": {
+    "polymer": "Polymer/polymer#>=0.4.0 <1.0.0",
+    "core-ajax": "Polymer/core-ajax#>=0.4.0 <1.0.0",
+    "paper-button": "Polymer/paper-button#>=0.4.0 <1.0.0"
+  },
+  "_release": "a1687db96a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a1687db96ab90125c77f05a694896df13ae1e519"
+  },
+  "_source": "git://github.com/PolymerLabs/uber-products.git",
+  "_target": "master",
+  "_originalSource": "PolymerLabs/uber-products"
+}

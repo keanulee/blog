@@ -1,0 +1,20 @@
+{
+  "name": "uber-estimates-time",
+  "version": "0.1.0",
+  "authors": [
+    "Keanu Lee <keanulee@google.com>"
+  ],
+  "description": "Displays a list of Uber time estimates given a latitude and longitude.",
+  "keywords": [
+    "polymer",
+    "web-components",
+    "uber"
+  ],
+  "main": "uber-estimates-time.html",
+  "homepage": "https://polymerlabs.github.io/uber-estimates-time/",
+  "dependencies": {
+    "polymer": "Polymer/polymer#>=0.4.0 <1.0.0",
+    "core-ajax": "Polymer/core-ajax#>=0.4.0 <1.0.0",
+    "paper-button": "Polymer/paper-button#>=0.4.0 <1.0.0"
+  }
+}
