@@ -1,7 +1,5 @@
 {
   "name": "google-map",
-  "version": "0.3.1",
-  "private": false,
   "homepage": "http://googlewebcomponents.github.io/google-map",
   "description": "Google Maps web components",
   "main": "google-map.html",
@@ -27,15 +25,15 @@
     "apis"
   ],
   "dependencies": {
-    "google-apis": "GoogleWebComponents/google-apis#master"
+    "google-apis": "GoogleWebComponents/google-apis#~0.3.1"
   },
-  "_release": "0.3.1",
+  "_release": "9e1b285e20",
   "_resolution": {
-    "type": "version",
-    "tag": "0.3.1",
-    "commit": "2c318c7dbc5db395ce4baae77870b266c87bbc9d"
+    "type": "branch",
+    "branch": "master",
+    "commit": "9e1b285e20cd06f49d89ade7240994257f01bd7e"
   },
   "_source": "git://github.com/GoogleWebComponents/google-map.git",
-  "_target": ">=0.3.1 <1.0.0",
+  "_target": "master",
   "_originalSource": "GoogleWebComponents/google-map"
 }

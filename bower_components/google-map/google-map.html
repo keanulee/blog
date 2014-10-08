@@ -45,7 +45,7 @@ child of `google-map`.
 <script>
   (function() {
 
-    Polymer('google-map-marker', {
+    Polymer({
 
       /**
        * A Google Maps marker object.
@@ -110,7 +110,10 @@ child of `google-map`.
 
       updatePosition: function() {
         if (this.marker && this.latitude != null && this.longitude != null) {
-          this.marker.setPosition({lat: this.latitude, lng: this.longitude});
+          this.marker.setPosition({
+            lat: parseFloat(this.latitude),
+            lng: parseFloat(this.longitude)
+          });
         }
       },
 
@@ -248,7 +251,7 @@ To add custom map options, you can extend this element:
 
     <polymer-element name="my-google-map" extends="google-map">
       <script>
-        Polymer('my-google-map', {
+        Polymer({
 
           getMapOptions: function() {
             var mapOptions = this.super();
@@ -274,7 +277,7 @@ Fired when the Maps API has fully loaded.
 - Handle removals and support .innerHTML = ''.
 - Use <google-maps-api>.api instead of google.maps namespace.
 -->
-<polymer-element name="google-map" attributes="apiKey latitude longitude zoom showCenterMarker version map mapType disableDefaultUI fitToMarkers zoomable styles">
+<polymer-element name="google-map" attributes="apiKey latitude longitude zoom showCenterMarker version map mapType disableDefaultUI fitToMarkers zoomable styles maxZoom minZoom libraries">
 <template>
 
   <style>
@@ -293,7 +296,7 @@ Fired when the Maps API has fully loaded.
 
   </style>
 
-  <google-maps-api apiKey="{{apiKey}}" version="{{version}}" on-api-load="{{mapApiLoaded}}"></google-maps-api>
+  <google-maps-api apiKey="{{apiKey}}" version="{{version}}" on-api-load="{{mapApiLoaded}}" libraries="{{libraries}}"></google-maps-api>
 
   <div id="map"></div>
 
@@ -302,7 +305,7 @@ Fired when the Maps API has fully loaded.
 </template>
 <script>
 
-  Polymer('google-map', {
+  Polymer({
 
     /**
      * A Maps API key. To obtain an API key, see developers.google.com/maps/documentation/javascript/tutorial#api_key.
@@ -320,6 +323,17 @@ Fired when the Maps API has fully loaded.
      * @default 37.77493
      */
     latitude: 37.77493,
+
+    /**
+     * A comma separated list (e.g. "places,geometry") of libraries to load
+     * with this map. Defaults to "places". For more information see
+     * https://developers.google.com/maps/documentation/javascript/libraries.
+     *
+     * @attribute libraries
+     * @type string
+     * @default "places"
+     */
+    libraries: "places",
 
     /**
      * A longitude to center the map on.
@@ -403,6 +417,24 @@ Fired when the Maps API has fully loaded.
      */
     styles: {},
 
+    /**
+     * A maximum zoom level which will be displayed on the map.
+     *
+     * @attribute maxZoom
+     * @type number
+     * @default null
+     */
+    maxZoom: null,
+
+    /**
+     * A minimum zoom level which will be displayed on the map.
+     *
+     * @attribute minZoom
+     * @type number
+     * @default null
+     */
+    minZoom: null,
+
     observe: {
       latitude: 'updateCenter',
       longitude: 'updateCenter'
@@ -421,6 +453,7 @@ Fired when the Maps API has fully loaded.
 
       this.updateCenter();
       this.updateMarkers();
+      this.addMapListeners();
 
       this.fire('google-map-ready');
     },
@@ -432,7 +465,9 @@ Fired when the Maps API has fully loaded.
         disableDefaultUI: this.disableDefaultUI,
         disableDoubleClickZoom: !this.zoomable,
         scrollwheel: this.zoomable,
-        styles: this.styles
+        styles: this.styles,
+        maxZoom: Number(this.maxZoom),
+        minZoom: Number(this.minZoom)
       };
 
       // Only override the default if set.
@@ -484,18 +519,28 @@ Fired when the Maps API has fully loaded.
     },
 
     updateCenter: function() {
-      if (!this.map || this.latitude == null || this.longitude == null ||
-          typeof this.latitude === 'object' ||
-          typeof this.longitude === 'object') {
+      if (!this.map) {
         return;
+      } else if (typeof this.latitude !== 'number' || isNaN(this.latitude)) {
+        throw new TypeError('latitude must be a number');
+      } else if (typeof this.longitude !== 'number' || isNaN(this.longitude)) {
+        throw new TypeError('longitude must be a number');
       }
-      var center = new google.maps.LatLng(this.latitude, this.longitude);
-      if (!this.map.getCenter()) {
+
+      var newCenter = new google.maps.LatLng(this.latitude, this.longitude);
+      var oldCenter = this.map.getCenter();
+
+      if (!oldCenter) {
         // If the map does not have a center, set it right away.
-        this.map.setCenter(center);
+        this.map.setCenter(newCenter);
       } else {
+        // Using google.maps.LatLng returns corrected lat/lngs.
+        oldCenter = new google.maps.LatLng(oldCenter.lat(), oldCenter.lng());
+
         // If the map currently has a center, slowly pan to the new one.
-        this.map.panTo(center);
+        if (!oldCenter.equals(newCenter)) {
+          this.map.panTo(newCenter);
+        }
       }
       this.showCenterMarkerChanged();
     },
@@ -503,6 +548,18 @@ Fired when the Maps API has fully loaded.
     zoomChanged: function() {
       if (this.map) {
         this.map.setZoom(Number(this.zoom));
+      }
+    },
+
+    maxZoomChanged: function() {
+      if (this.map) {
+        this.map.setOptions({maxZoom: Number(this.maxZoom)});
+      }
+    },
+
+    minZoomChanged: function() {
+      if (this.map) {
+        this.map.setOptions({minZoom: Number(this.minZoom)});
       }
     },
 
@@ -579,6 +636,18 @@ Fired when the Maps API has fully loaded.
 
         this.map.setCenter(latLngBounds.getCenter());
       }
+    },
+
+    addMapListeners: function() {
+      google.maps.event.addListener(this.map, 'center_changed', function() {
+        var center = this.map.getCenter();
+        this.latitude = center.lat();
+        this.longitude = center.lng();
+      }.bind(this));
+
+      google.maps.event.addListener(this.map, 'zoom_changed', function() {
+        this.zoom = this.map.getZoom();
+      }.bind(this));
     }
 
   });

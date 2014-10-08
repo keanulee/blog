@@ -143,7 +143,7 @@ Demo:
 
 That's it for this post. Next time I'll show you how to use [`<geojson-data>`](https://github.com/polymerlabs/geojson-data) to draw regions onto a [`<google-map>`](https://github.com/GoogleWebComponents/google-map) element.
 
-**Note:** Don't try to use the server token in the above examples on your own site - they are to requests from this domain only.
+**Note:** Don't try to use the server token in the above examples on your own site - it is restricted to requests from this domain only.
 
 [`<uber-products>`]: https://github.com/PolymerLabs/uber-products
 [`<uber-estimates-time>`]: https://github.com/PolymerLabs/uber-estimates-time

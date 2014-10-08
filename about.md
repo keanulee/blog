@@ -9,3 +9,5 @@ Hi! My name is Keanu Lee and I am a software developer. I'm currently a universi
 Keanu's Tech Ramblings is a blog that highlights some of the work I do. Topics of interest include web development and Polymer.
 
 For more information, visit [keanulee.com](https://keanulee.com).
+
+_Views and opinions expressed on this blog are my own, and they do not necessarily reflect the views and opinions of my employer._
