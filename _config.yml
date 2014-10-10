@@ -5,7 +5,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Keanu's Tech Ramblings is a blog that highlights some of the work I do.
   Topics of interest include web development and Polymer.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://keanulee.github.io" # the base hostname & protocol for your site
+url: "https://blog.keanulee.com" # the base hostname & protocol for your site
 twitter_username: # empty
 github_username:  keanulee
 
