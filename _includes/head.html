@@ -1,19 +1,26 @@
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{{ site.description }}">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ site.description }}">
 
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <script>
-    // HTTPS only - some demos include APIs that require this.
-    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
-        window.location.href = 'https:' + window.location.href.substr(5);
+  <script>
+  (function() {
+    // Redirect from anything that is not 'https://blog.keanulee.com'. For
+    // example, 'http://blog.keanulee.com' and 'keanulee.github.io/blog'.
+    var siteHost = '{{ site.url }}';
+    var onValidHost = window.location.hostname === 'localhost' ||
+      new RegExp(siteHost).test(window.location.href);
+
+    if (!onValidHost) {
+      window.location.href = siteHost + window.location.pathname.replace(/^\/blog\//, '/');
     }
-    </script>
-    <script src="/bower_components/platform/platform.js"></script>
+  })();
+  </script>
+  <script src="/bower_components/platform/platform.js"></script>
 </head>
