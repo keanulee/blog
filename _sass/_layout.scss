@@ -234,3 +234,21 @@
         }
     }
 }
+
+
+
+/**
+ * Comments
+ */
+/**
+ * HACK: The imported Disqus script relies on testing
+ * `element !== document.documentElement` when finding the iframe's scroll
+ * container to make sure it doesn't look above the <html> element. Since
+ * `documentElement` isn't properly polyfilled
+ * (see https://github.com/Polymer/platform-dev/issues/54), the Disqus script
+ * will break. Thus, we artificially set the overflow-y property to auto on
+ * div#disqus_thread to make that the scroll container and workaround this issue.
+ */
+#disqus_thread {
+    overflow-y: auto;
+}
