@@ -6,9 +6,9 @@ tags: infrastructure web
 
 <link rel="import" href="/bower_components/paper-button/paper-button.html">
 
-I use [GitHub Pages] to host this blog - it uses [Jekyll] which allows me to write posts in Markdown, and yet it's flexible enough so that I can embed <paper-button raised>custom HTML</paper-button> in my posts. Most importantly, it's powered by GitHub infrastructure and is FREE to use!
+I use [GitHub Pages](https://pages.github.com/) to host this blog - it uses [Jekyll](http://jekyllrb.com/) which allows me to write posts in Markdown, and yet it's flexible enough so that I can embed <paper-button raised>custom HTML</paper-button> in my posts. Most importantly, it's powered by GitHub infrastructure and is FREE to use!
 
-GitHub Pages are typically hosted on a subdomain of github.io, such as [https://keanulee.github.io](https://keanulee.github.io). You can also setup your own custom domain, which allows my blog to be hosted at [http://blog.keanulee.com](http://blog.keanulee.com).
+GitHub Pages are typically hosted on a subdomain of github.io, such as _https://keanulee.github.io_. You can also setup your own custom domain, which allows my blog to be hosted at _http://blog.keanulee.com_.
 
 ## See the difference?
 
