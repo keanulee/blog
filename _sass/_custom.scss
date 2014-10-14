@@ -1,0 +1,18 @@
+.main-wrapper {
+	padding: 30px;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+	transition: box-shadow .5s ease;
+
+	&:hover {
+		box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+
+	* {
+		transition: opacity .3s ease;
+		opacity: 1;
+	}
+}
+
+.animating .main-wrapper * {
+	opacity: 0;
+}

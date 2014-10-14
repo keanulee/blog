@@ -4,16 +4,19 @@
   {% include head.html %}
 
   <body>
+    <core-animated-pages transitions="hero-transition" valueattr="id">
+      <section id="{{ page.url | replace:'index.html','' }}" pagetitle="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+        {% include header.html %}
 
-    {% include header.html %}
+        <div class="page-content">
+          <div class="wrapper main-wrapper" hero hero-id="wrapper">
+            {{ content }}
+          </div>
+        </div>
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
-
-    {% include footer.html %}
+        {% include footer.html %}
+      </section>
+    </core-animated-pages>
     {% include footer-scripts.html %}
 
   </body>
