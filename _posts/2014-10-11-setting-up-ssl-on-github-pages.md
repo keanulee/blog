@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Setting up SSL on GitHub Pages
-tags: infrastructure web
+tags: infrastructure web https
 ---
 
 <link rel="import" href="/bower_components/paper-button/paper-button.html">

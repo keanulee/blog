@@ -12,10 +12,14 @@
     "paper-elements": "Polymer/paper-elements#>=0.4.0 <1.0.0",
     "google-map": "GoogleWebComponents/google-map#master",
     "polymer-chauffeur": "PolymerLabs/polymer-chauffeur#master",
-    "geojson-data": "PolymerLabs/geojson-data#master"
+    "geojson-data": "PolymerLabs/geojson-data#master",
+    "paper-spinner": "PolymerLabs/paper-spinner#master"
   },
   "resolutions": {
     "google-map": "master",
-    "google-apis": "master"
+    "google-apis": "master",
+    "polymer": ">=0.4.0 <1.0.0",
+    "platform": "^0.4.0",
+    "core-component-page": "^0.4.0"
   }
 }

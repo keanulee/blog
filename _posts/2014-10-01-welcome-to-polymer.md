@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Welcome to Polymer!
-tags: polymer web
+tags: polymer web uber
 ---
 
 <link rel="import" href="/bower_components/polymer-chauffeur/polymer-chauffeur.html">

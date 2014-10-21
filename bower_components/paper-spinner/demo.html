@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="paper-spinner.html">
+</head>
+<body>
+  <style shim-shadowdom>
+  paper-spinner.big-spinner {
+    width: 100px;
+    height: 100px;
+  }
+
+  paper-spinner.big-spinner::shadow .active .circle {
+    border-color: purple;
+    border-width: 20px;
+  }
+  </style>
+  <template is="auto-binding">
+    <h2>Default Spinner</h2>
+    <paper-spinner id="spinner" active></paper-spinner>
+    <button on-tap="{{toggle}}">Toggle</button>
+    <h2>Custom Spinner</h2>
+    <paper-spinner class="big-spinner" active></paper-spinner>
+  </template>
+  <script>
+    var t = document.querySelector('template');
+    t.toggle = function() {
+      t.$.spinner.active = !t.$.spinner.active;
+    }
+  </script>
+</body>
+</html>

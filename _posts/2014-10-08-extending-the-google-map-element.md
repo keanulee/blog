@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Extending the &lt;google-map> Element
-tags: polymer web
+tags: polymer web maps
 ---
 
 <link rel="import" href="/bower_components/google-map/google-map.html">
