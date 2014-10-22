@@ -108,6 +108,17 @@ child of `google-map`.
         longitude: 'updatePosition',
       },
 
+      detached: function() {
+        this.marker.setMap(null);
+      },
+
+      attached: function() {
+        // If element is added back to DOM, put it back on the map.
+        if (this.marker) {
+          this.marker.setMap(this.map);
+        }
+      },
+
       updatePosition: function() {
         if (this.marker && this.latitude != null && this.longitude != null) {
           this.marker.setPosition({
@@ -458,6 +469,13 @@ Fired when the Maps API has fully loaded.
       this.fire('google-map-ready');
     },
 
+    /**
+     * Returns the an object with the current map configurations. Useful for
+     * overriding in a subclass.
+     *
+     * @method getMapOptions
+     * @return {object} Current map configuration.
+     */
     getMapOptions: function() {
       var mapOptions = {
         zoom: this.zoom,
@@ -511,6 +529,12 @@ Fired when the Maps API has fully loaded.
       }
     },
 
+    /**
+     * Explicitly resizes the map, updating its center. This is useful if the
+     * map does not show after you have unhidden it.
+     *
+     * @method resize
+     */
     resize: function() {
       if (this.map) {
         google.maps.event.trigger(this.map, 'resize');

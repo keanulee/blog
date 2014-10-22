@@ -558,11 +558,11 @@ paper-spinner.big {
   height: 40px;
 }
 
-paper-spinner.thick::shadow .active .circle {
+paper-spinner.thick::shadow .circle {
   border-width: 6px;
 }
 
-paper-spinner.thin::shadow .active .circle {
+paper-spinner.thin::shadow .circle {
   border-width: 1px;
 }
 
@@ -570,7 +570,7 @@ paper-spinner.color {
   background-color: #4285f4;
 }
 
-paper-spinner.color::shadow .active .circle {
+paper-spinner.color::shadow .circle {
   border-color: #FFF;
 }
 </style>
