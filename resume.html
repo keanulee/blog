@@ -1,0 +1,52 @@
+---
+layout: page
+title: Resume (Beta)
+permalink: /resume/
+---
+
+<link rel="import" href="/bower_components/core-ajax/core-ajax.html">
+
+This resume is a work in progress.
+<a href="https://keanulee.com/me/resume.php">Click here to view my old resume.</a>
+
+{% raw %}
+<template is="auto-binding">
+  <core-ajax auto
+    url="/profile/profile.json" 
+    handleAs="json"
+    response="{{profile}}"></core-ajax>
+
+  <h2>{{profile.formattedName}}</h2>
+  <p>{{profile.summary}}</p>
+
+  <h2>Work</h2>
+  <template repeat="{{profile.positions.values}}">
+    <h3>{{title}}</h3>
+    <h4>{{company.name}}</h4>
+    <p class="pre-whitespace">{{summary}}</p>
+  </template>
+
+  <h2>Education</h2>
+  <template repeat="{{profile.educations.values}}">
+    <h3>{{schoolName}}</h3>
+    <h4>{{degree}}</h4>
+    <p>Graduating {{endDate.year}}</p>
+  </template>
+
+  <h2>Awards</h2>
+  <template repeat="{{profile.honorsAwards.values}}">
+    <h3>{{name}}</h3>
+    <h4>{{issuer}}</h4>
+  </template>
+
+  <h2>Skills</h2>
+  <ul>
+    <template repeat="{{profile.skills.values}}">
+      <li>{{skill.name}}</li>
+    </template>
+  </ul>
+
+  <h2>Interests</h2>
+  <p>{{profile.interests}}</p>
+</template>
+{% endraw %}

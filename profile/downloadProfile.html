@@ -1,0 +1,50 @@
+<html>
+<body>
+  <script src="https://platform.linkedin.com/in.js">
+    api_key: 75ll1r6jhqcg9c
+    authorize: true
+  </script>
+
+  <script type="in/Login"></script>
+
+  <script>
+  var fields = [
+    'formatted-name',
+    'headline',
+    'location',
+    'industry',
+    'summary',
+    'specialties',
+    'positions',
+    'picture-url',
+    'public-profile-url',
+    'last-modified-timestamp',
+    'interests',
+    'publications',
+    'patents',
+    'languages',
+    'skills',
+    'certifications',
+    'educations',
+    'courses',
+    'volunteer',
+    'recommendations-received',
+    'following',
+    'honors-awards'
+  ];
+
+  IN.Event.on(IN, 'auth', function() {
+    IN.API.Profile('me').fields(fields).result(function(result) {
+      var anchor = document.createElement('a');
+      anchor.setAttribute('download', 'profile.json');
+      anchor.setAttribute('href', 'data:application/json;charset=UTF-8,' +
+        encodeURIComponent(JSON.stringify(result.values[0], null, 2)));
+      anchor.innerText = 'Download Profile';
+      document.body.appendChild(anchor);
+    }).error(function(err) {
+      alert(err);
+    });
+  });
+  </script>
+</body>
+</html>

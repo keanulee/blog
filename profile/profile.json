@@ -1,0 +1,510 @@
+{
+  "_key": "~",
+  "educations": {
+    "_total": 2,
+    "values": [
+      {
+        "degree": "Bachelor of Computer Science",
+        "endDate": {
+          "year": 2015
+        },
+        "id": 106001378,
+        "schoolName": "University of Waterloo",
+        "startDate": {
+          "year": 2010
+        }
+      },
+      {
+        "degree": "Bachelor of Business Administration (B.B.A.)",
+        "endDate": {
+          "year": 2015
+        },
+        "id": 106001550,
+        "schoolName": "Wilfrid Laurier University",
+        "startDate": {
+          "year": 2010
+        }
+      }
+    ]
+  },
+  "following": {
+    "companies": {
+      "_total": 6,
+      "values": [
+        {
+          "id": 1337,
+          "name": "LinkedIn"
+        },
+        {
+          "id": 1441,
+          "name": "Google"
+        },
+        {
+          "id": 2991,
+          "name": "CNET"
+        },
+        {
+          "id": 10667,
+          "name": "Facebook"
+        },
+        {
+          "id": 815166,
+          "name": "Inkling"
+        },
+        {
+          "id": 1152516,
+          "name": "FutureAdvisor - Investment Management for Everyone (We're Hiring!)"
+        }
+      ]
+    },
+    "industries": {
+      "_total": 2,
+      "values": [
+        {
+          "id": 4
+        },
+        {
+          "id": 6
+        }
+      ]
+    },
+    "people": {
+      "_total": 0
+    },
+    "specialEditions": {
+      "_total": 0
+    }
+  },
+  "formattedName": "Keanu Lee",
+  "headline": "Business/Computer Science Student",
+  "honorsAwards": {
+    "_total": 6,
+    "values": [
+      {
+        "id": 52,
+        "issuer": "University of Waterloo",
+        "name": "President's Scholarship of Distinction - International Experience Award"
+      },
+      {
+        "id": 53,
+        "issuer": "University of Waterloo",
+        "name": "President's Scholarship of Distinction - Research Award"
+      },
+      {
+        "id": 54,
+        "issuer": "University of Waterloo",
+        "name": "President's Scholarship of Distinction - Entrance Scholarship"
+      },
+      {
+        "id": 55,
+        "issuer": "Clear Water Academy",
+        "name": "Academic Excellence Scholarship"
+      },
+      {
+        "id": 56,
+        "issuer": "Clear Water Academy",
+        "name": "Superior Performance in Mathematics"
+      },
+      {
+        "id": 57,
+        "issuer": "Clear Water Academy",
+        "name": "Scholars List"
+      }
+    ]
+  },
+  "industry": "Computer Software",
+  "interests": "Software Development, Web Design, Home Automation, Technology News and Trends, Travel, Skiing",
+  "lastModifiedTimestamp": 1333602071439,
+  "location": {
+    "country": {
+      "code": "ca"
+    },
+    "name": "Kitchener, Canada Area"
+  },
+  "pictureUrl": "https://media.licdn.com/mpr/mprx/0_ePvupf5Srt7QOqCioqN1puc_rlZHp-tioAT1pSkPfNuJin5_Xv58tDrgO049xzPfWKBt1os3xPZb",
+  "positions": {
+    "_total": 7,
+    "values": [
+      {
+        "company": {
+          "id": 1441,
+          "name": "Google"
+        },
+        "id": 552464143,
+        "isCurrent": true,
+        "startDate": {
+          "month": 9,
+          "year": 2014
+        },
+        "summary": "• Working on Polymer, a front-end library designed for the emerging W3C Web Components standard",
+        "title": "Software Engineer"
+      },
+      {
+        "company": {
+          "id": 815166,
+          "name": "Inkling"
+        },
+        "endDate": {
+          "month": 4,
+          "year": 2014
+        },
+        "id": 499247619,
+        "isCurrent": false,
+        "startDate": {
+          "month": 1,
+          "year": 2014
+        },
+        "summary": "• Developed on the front-end of Inkling Habitat, a cloud authoring and publishing platform\n• Suggested and prototyped user interface improvements for product managers and designers\n• Coded JavaScript using Backbone.js and tested using Jasmine and Selenium",
+        "title": "Software Engineer"
+      },
+      {
+        "company": {
+          "id": 1152516,
+          "name": "FutureAdvisor"
+        },
+        "endDate": {
+          "month": 4,
+          "year": 2013
+        },
+        "id": 349697235,
+        "isCurrent": false,
+        "startDate": {
+          "month": 1,
+          "year": 2013
+        },
+        "summary": "• Developed on the core Ruby on Rails application, front- and back-end\n• Performed site traffic analytics using Google Analytics and Mixpanel\n• Created split testing pages using both in-house solutions and Optimizely",
+        "title": "Software Engineer"
+      },
+      {
+        "company": {
+          "id": 17345,
+          "name": "SugarCRM"
+        },
+        "endDate": {
+          "month": 4,
+          "year": 2012
+        },
+        "id": 272489722,
+        "isCurrent": false,
+        "startDate": {
+          "month": 1,
+          "year": 2012
+        },
+        "summary": "• Designed and implemented a functional test queue system using Ruby on Rails\n• Integrated internal tools with the central Jenkins CI server\n• Implemented a new distributed system to improve build performance",
+        "title": "QA Engineer"
+      },
+      {
+        "company": {
+          "id": 166688,
+          "name": "Faculty of Mathematics, University of Waterloo"
+        },
+        "endDate": {
+          "month": 12,
+          "year": 2011
+        },
+        "id": 288362927,
+        "isCurrent": false,
+        "startDate": {
+          "month": 9,
+          "year": 2011
+        },
+        "summary": "• Worked under the supervision of Benoit Charbonneau, Assistant Professor at the University of Waterloo\n• Programmed libraries for Maple (CAS software) that would provide these functions to the scientific community\n• Compared the performance of this new algorithm with a prevalent one",
+        "title": "Research Assistant (Part-time)"
+      },
+      {
+        "company": {
+          "id": 16450,
+          "name": "Walton International Group"
+        },
+        "endDate": {
+          "month": 8,
+          "year": 2011
+        },
+        "id": 272490416,
+        "isCurrent": false,
+        "startDate": {
+          "month": 5,
+          "year": 2011
+        },
+        "summary": "• Developed ASP.NET 4.0 web applications to replace existing Access Forms\n• Created, optimized, and migrated Access databases to SQL 2008 databases\n• Designed reports using Microsoft SQL Server Reporting Services as needed by business users",
+        "title": "Technical Analyst"
+      },
+      {
+        "company": {
+          "id": 16450,
+          "name": "Walton International Group"
+        },
+        "endDate": {
+          "month": 8,
+          "year": 2010
+        },
+        "id": 288363244,
+        "isCurrent": false,
+        "startDate": {
+          "month": 7,
+          "year": 2010
+        },
+        "summary": "• Installed software on employee's desktop from a network\n• Deployed desktops to the office\n• Managed user account on Active Directory\n• Assisted with an office move in Toronto, ON\n• Developed a Microsoft SharePoint site for internal Information Technology department",
+        "title": "I.T. Support Technician"
+      }
+    ]
+  },
+  "publicProfileUrl": "https://www.linkedin.com/in/keanu",
+  "recommendationsReceived": {
+    "_total": 3,
+    "values": [
+      {
+        "id": 36349089,
+        "recommendationText": "Keanu is a results driven individual, who can always get the job done.  I knew if I assigned a task or project to him, not only would it be completed, he would give it his all.  Due dates were consistently met, challenges were overcome and his ideas were greatly appreciated.  He has a knack for web based applications, and does his best to keep up to date with new technology trends.  Overall he was a pleasure to work with, and I'd love to have a chance to work with him again.",
+        "recommendationType": {
+          "code": "colleague"
+        },
+        "recommender": {
+          "firstName": "Ray",
+          "id": "XxxAVmZwUo",
+          "lastName": "Sennewald"
+        }
+      },
+      {
+        "id": 36268909,
+        "recommendationText": "Keanu showed strong initiative, very good problem solving skills and the ability to work independently.",
+        "recommendationType": {
+          "code": "colleague"
+        },
+        "recommender": {
+          "firstName": "Jesse",
+          "id": "-Rt8BO-lXS",
+          "lastName": "Albers"
+        }
+      },
+      {
+        "id": 46447900,
+        "recommendationText": "Keanu is an extremely self-motivated software engineer who took on a series of special projects at FutureAdvisor with velocity, gusto, and independently. He worked well with the rest of the engineering team, was open to feedback, and did overall great work. I'd work with Keanu again in a heartbeat.",
+        "recommendationType": {
+          "code": "colleague"
+        },
+        "recommender": {
+          "firstName": "Bo",
+          "id": "ulAVXtRbyK",
+          "lastName": "Lu"
+        }
+      }
+    ]
+  },
+  "skills": {
+    "_total": 35,
+    "values": [
+      {
+        "id": 7,
+        "skill": {
+          "name": "Web Development"
+        }
+      },
+      {
+        "id": 8,
+        "skill": {
+          "name": "Web Design"
+        }
+      },
+      {
+        "id": 9,
+        "skill": {
+          "name": "Web Applications"
+        }
+      },
+      {
+        "id": 11,
+        "skill": {
+          "name": "HTML"
+        }
+      },
+      {
+        "id": 12,
+        "skill": {
+          "name": "CSS"
+        }
+      },
+      {
+        "id": 13,
+        "skill": {
+          "name": "JavaScript"
+        }
+      },
+      {
+        "id": 14,
+        "skill": {
+          "name": "JSON"
+        }
+      },
+      {
+        "id": 15,
+        "skill": {
+          "name": "jQuery"
+        }
+      },
+      {
+        "id": 16,
+        "skill": {
+          "name": "AJAX"
+        }
+      },
+      {
+        "id": 17,
+        "skill": {
+          "name": "C#"
+        }
+      },
+      {
+        "id": 18,
+        "skill": {
+          "name": "PHP"
+        }
+      },
+      {
+        "id": 19,
+        "skill": {
+          "name": "Ruby on Rails"
+        }
+      },
+      {
+        "id": 20,
+        "skill": {
+          "name": "MySQL"
+        }
+      },
+      {
+        "id": 21,
+        "skill": {
+          "name": "SQL"
+        }
+      },
+      {
+        "id": 22,
+        "skill": {
+          "name": "C++"
+        }
+      },
+      {
+        "id": 23,
+        "skill": {
+          "name": "Racket"
+        }
+      },
+      {
+        "id": 24,
+        "skill": {
+          "name": "Windows"
+        }
+      },
+      {
+        "id": 25,
+        "skill": {
+          "name": "Mac OS X"
+        }
+      },
+      {
+        "id": 26,
+        "skill": {
+          "name": "Linux"
+        }
+      },
+      {
+        "id": 27,
+        "skill": {
+          "name": "Unix"
+        }
+      },
+      {
+        "id": 28,
+        "skill": {
+          "name": "Bash"
+        }
+      },
+      {
+        "id": 30,
+        "skill": {
+          "name": "Continuous Integration"
+        }
+      },
+      {
+        "id": 31,
+        "skill": {
+          "name": "Jenkins"
+        }
+      },
+      {
+        "id": 33,
+        "skill": {
+          "name": "Subversion"
+        }
+      },
+      {
+        "id": 34,
+        "skill": {
+          "name": "Git"
+        }
+      },
+      {
+        "id": 35,
+        "skill": {
+          "name": "Github"
+        }
+      },
+      {
+        "id": 36,
+        "skill": {
+          "name": "VSS"
+        }
+      },
+      {
+        "id": 37,
+        "skill": {
+          "name": "TFS"
+        }
+      },
+      {
+        "id": 39,
+        "skill": {
+          "name": "Mathematics"
+        }
+      },
+      {
+        "id": 40,
+        "skill": {
+          "name": "Computer Science"
+        }
+      },
+      {
+        "id": 41,
+        "skill": {
+          "name": "Software Engineering"
+        }
+      },
+      {
+        "id": 45,
+        "skill": {
+          "name": "Modern Portfolio Theory"
+        }
+      },
+      {
+        "id": 46,
+        "skill": {
+          "name": "Asset Allocation"
+        }
+      },
+      {
+        "id": 48,
+        "skill": {
+          "name": "Portfolio Management"
+        }
+      },
+      {
+        "id": 58,
+        "skill": {
+          "name": "Ruby"
+        }
+      }
+    ]
+  },
+  "summary": "I am a web developer who enjoys building great user interfaces and learning about web design."
+}
