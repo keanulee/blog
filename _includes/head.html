@@ -20,6 +20,29 @@
       window.location.href = targetHref;
     }
   })();
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var header = document.querySelector('header');
+    var headerHeight = header.offsetHeight;
+    var translatePx = 0;
+    var prevScrollTop = document.body.scrollTop;
+
+    document.addEventListener('scroll', function() {
+      var scrollTop = Math.min(Math.max(document.body.scrollTop, 0), document.body.offsetHeight - document.documentElement.clientHeight);
+
+      if (scrollTop > prevScrollTop && translatePx < headerHeight) {
+        translatePx = Math.min(translatePx + scrollTop - prevScrollTop, headerHeight);
+        header.style.transform = header.style.webkitTransform =
+          'translate3d(0, -' + translatePx + 'px, 0)';
+      } else if (scrollTop < prevScrollTop && translatePx > 0) {
+        translatePx = Math.max(translatePx + scrollTop - prevScrollTop, 0);
+        header.style.transform = header.style.webkitTransform =
+          'translate3d(0, -' + translatePx + 'px, 0)';
+      }
+
+      prevScrollTop = scrollTop;
+    });
+  });
   </script>
-  <script src="/bower_components/platform/platform.js"></script>
+  <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
 </head>
