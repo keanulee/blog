@@ -16,7 +16,6 @@ Last week I was tasked with improving [`<paper-spinner>`], a Polymer element tha
 
 [The first spinner](https://github.com/PolymerLabs/paper-spinner/tree/6e694de4bf598b1fa1c50f5abd0143ff51635437) was created by a colleague a while ago, and I used it as a starting point to build my spinner. It animates the `stroke-dashoffset` (i.e. where the dashed-border begins) of a custom SVG path for the growing/shrinking animation, and rotates the the entire path in step intervals to make it appear as if the arc starts growing from where it shrank to at the previous iteration. The path's stroke color is animated from blue to red to yellow to green, and the container `<span>` is rotated at a different rate to make the animation appear random. With [relatively little work](https://github.com/PolymerLabs/paper-spinner/compare/6e694de4bf598b1fa1c50f5abd0143ff51635437...5c1e741d854b984ef61f39bd22ee8c642dd463a9), I was able to get this spinner working on Chrome, Safari and Firefox.
 
-
 <style>
 path.dash-reset {
   stroke-dasharray: 58.9;
@@ -206,9 +205,6 @@ span.rotate {
 
 This is a purely CSS animations - no JavaScript needed. However, this spinner does not work on Internet Explorer since IE does not support CSS animations for SVG elements. Also, some of the CSS properties that are animated, such as `stroke` and `stroke-dashoffset`, [are expensive to animate since they will trigger the browser to repaint](http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/). This is especially apparent if you [Show paint rectangles](https://developer.chrome.com/devtools/docs/rendering-settings#show-paint rectangles) in Chrome DevTools, or use the toggle button below to do some heavy JavaScript computations:
 
-
-
-
 {% raw %}
 <blockquote>
   <template id="heavy" is="auto-binding">
@@ -340,11 +336,38 @@ rotateSpinnerEffect: function(timeFraction, target, animation) {
       'translate(14, 14) rotate(-' + (timeFraction * 360) + ') translate(-14, -14)');
   };
   cap.addEventListener('template-bound', function() {
-    // HACK: workaround missing strokeDashoffset and strokeWidth properties in
-    // web-animations-js. See https://github.com/web-animations/web-animations-js/pull/645.
-    window._WebAnimationsTestingUtilities._types.strokeDashoffset =
-      window._WebAnimationsTestingUtilities._types.strokeWidth = 
-      window._WebAnimationsTestingUtilities._types.borderBottomWidth; /* lengthType */
+    // HACK: Add support for CSS animations for select SVG properties needed for the demo.
+    // Code derived from https://github.com/web-animations/web-animations-next.
+    var canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    var context = canvas.getContext('2d');
+
+    function parseColor(string) {
+      string = string.trim();
+      // The context ignores invalid colors
+      context.fillStyle = '#000';
+      context.fillStyle = string;
+      var contextSerializedFillStyle = context.fillStyle;
+      context.fillStyle = '#fff';
+      context.fillStyle = string;
+      if (contextSerializedFillStyle != context.fillStyle)
+        return;
+      context.fillRect(0, 0, 1, 1);
+      var pixelColor = context.getImageData(0, 0, 1, 1).data;
+      context.clearRect(0, 0, 1, 1);
+      var alpha = pixelColor[3] / 255;
+      return [pixelColor[0] * alpha, pixelColor[1] * alpha, pixelColor[2] * alpha, alpha];
+    }
+
+    function round(left, right) {
+      return [left, right, Math.round];
+    }
+
+    webAnimationsMinifill.addPropertiesHandler(parseColor, webAnimationsMinifill.mergeColors,
+      ['stroke']);
+    webAnimationsMinifill.addPropertiesHandler(webAnimationsMinifill.parseNumber, round,
+      ['stroke-dashoffset', 'stroke-width']);
+
     // HACK: "Polyfill" classList on the spinner SVG element (for IE).
     if (!this.$.spinner.classList) {
       this.$.spinner.classList = {
@@ -354,7 +377,6 @@ rotateSpinnerEffect: function(timeFraction, target, animation) {
     }
     this.$.spinAnimation.play();
   });
-
 </script>
 {% endraw %}
 
@@ -372,183 +394,68 @@ Instead of using CSS `clip`, I decided to put the rotating circle into a `<div>`
 
 To animate the color transitions, I created semi-circles for each of the four colors and animated the CSS `opacity` property for each one. That way, it can be GPU-accelerated.
 
-<link rel="stylesheet" href="/bower_components/paper-spinner/paper-spinner.css">
-<style>
-/* Custom overrides for this blog post to make the examples work. */
-
-.container {
-  display: inline-block;
-  position: relative;
-  width: 28px;
-  height: 28px;
-  border: 1px solid #CCC;
+<style shim-shadowdom>
+paper-spinner.no-patch::shadow .gap-patch {
+  display: none;
 }
 
-.container.rotate {
-  /* duration: 360 * ARCTIME / (ARCSTARTROT + (360-ARCSIZE)) */
-  -webkit-animation: rotate 1568ms linear infinite;
-  animation: rotate 1568ms linear infinite;
+paper-spinner.container-frozen::shadow #spinnerContainer.active {
+  -webkit-animation: none;
+  animation: none;
 }
 
-.container.split-view {
+paper-spinner.frozen::shadow .active .spinner-layer {
+  -webkit-animation-play-state: paused, running;
+  animation-play-state: paused, running;
+}
+
+paper-spinner.split-view {
   width: 56px;
 }
 
-.container.split-view .circle-clipper {
-  width: 25%;
+paper-spinner.split-view::shadow .circle-clipper.right .circle {
+  left: 0;
 }
 
-.container.split-view.show-clipped .circle-clipper {
-  overflow: visible;
+paper-spinner.split-view::shadow .circle-clipper .circle {
+  width: 100%;
 }
 
-.container.split-view .circle-clipper:first-child {
-  margin-right: 50%;
+paper-spinner.alternate-colors::shadow .spinner-layer.blue .circle-clipper.right .circle,
+paper-spinner.alternate-colors::shadow .spinner-layer.red .circle-clipper.left .circle,
+paper-spinner.alternate-colors::shadow .spinner-layer.yellow .circle-clipper.right .circle,
+paper-spinner.alternate-colors::shadow .spinner-layer.green .circle-clipper.left .circle {
+  display: none;
 }
 
-.container.split-view.show-clipped.frozen .circle {
-  -webkit-animation: none;
-  animation: none;
+paper-spinner.no-colors::shadow .spinner-layer.blue {
   opacity: 1;
 }
 
-.container.split-view.show-clipped.frozen.unrotated .circle {
+paper-spinner.no-rotate::shadow .circle-clipper .circle {
   -webkit-transform: none;
   transform: none;
 }
 
-.center-area-overlay {
+paper-spinner.cover-clipped::after {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 25%;
   right: 25%;
-  background-color: rgba(0, 0, 0, 0.2)
+  background-color: #CCC;
+  content: '';
 }
-
 </style>
 
-<div class="container split-view show-clipped frozen unrotated">
-  <div class="circle-container active">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right red" fit></div>
-    </div>
-  </div>
-</div>
-
-<div class="container split-view show-clipped frozen">
-  <div class="circle-container active">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right red" fit></div>
-    </div>
-  </div>
-</div>
-
-<div class="container split-view show-clipped">
-  <div class="circle-container active">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-      <div class="circle left yellow" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right red" fit></div>
-      <div class="circle right green" fit></div>
-    </div>
-  </div>
-</div>
-
-<div class="container split-view show-clipped">
-  <div class="circle-container active">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-      <div class="circle left red" fit></div>
-      <div class="circle left yellow" fit></div>
-      <div class="circle left green" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right blue" fit></div>
-      <div class="circle right red" fit></div>
-      <div class="circle right yellow" fit></div>
-      <div class="circle right green" fit></div>
-    </div>
-  </div>
-  <div class="center-area-overlay"></div>
-</div>
-
-<div class="container split-view">
-  <div class="circle-container active">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-      <div class="circle left red" fit></div>
-      <div class="circle left yellow" fit></div>
-      <div class="circle left green" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right blue" fit></div>
-      <div class="circle right red" fit></div>
-      <div class="circle right yellow" fit></div>
-      <div class="circle right green" fit></div>
-    </div>
-  </div>
-  <div class="center-area-overlay"></div>
-</div>
-
-<div class="container">
-  <div class="circle-container active">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-      <div class="circle left red" fit></div>
-      <div class="circle left yellow" fit></div>
-      <div class="circle left green" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right blue" fit></div>
-      <div class="circle right red" fit></div>
-      <div class="circle right yellow" fit></div>
-      <div class="circle right green" fit></div>
-    </div>
-  </div>
-</div>
-
-<div class="container active">
-  <div class="circle-container">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-      <div class="circle left red" fit></div>
-      <div class="circle left yellow" fit></div>
-      <div class="circle left green" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right blue" fit></div>
-      <div class="circle right red" fit></div>
-      <div class="circle right yellow" fit></div>
-      <div class="circle right green" fit></div>
-    </div>
-  </div>
-</div>
-
-<div class="container active rotate">
-  <div class="circle-container">
-    <div class="circle-clipper">
-      <div class="circle left blue" fit></div>
-      <div class="circle left red" fit></div>
-      <div class="circle left yellow" fit></div>
-      <div class="circle left green" fit></div>
-    </div>
-    <div class="circle-clipper">
-      <div class="circle right blue" fit></div>
-      <div class="circle right red" fit></div>
-      <div class="circle right yellow" fit></div>
-      <div class="circle right green" fit></div>
-    </div>
-  </div>
-</div>
+<paper-spinner class="no-patch container-frozen frozen split-view no-colors no-rotate"></paper-spinner>
+<paper-spinner class="no-patch container-frozen frozen split-view no-colors"></paper-spinner>
+<paper-spinner active class="no-patch container-frozen frozen split-view alternate-colors"></paper-spinner>
+<paper-spinner active class="no-patch container-frozen frozen split-view"></paper-spinner>
+<paper-spinner active class="no-patch container-frozen frozen split-view cover-clipped"></paper-spinner>
+<paper-spinner active class="no-patch container-frozen frozen"></paper-spinner>
+<paper-spinner active class="no-patch container-frozen"></paper-spinner>
+<paper-spinner active class="no-patch"></paper-spinner>
 
 The end result? A spinner that is fast and doesn't trigger any repaints. Here's some examples of [`<paper-spinner>`] in use, and how it can be customized.
 
@@ -576,10 +483,16 @@ paper-spinner.color::shadow .circle {
 </style>
 
 <paper-spinner active></paper-spinner>
-<paper-spinner class="big" active></paper-spinner>
-<paper-spinner class="thick" active></paper-spinner>
-<paper-spinner class="thin" active></paper-spinner>
-<paper-spinner class="color" active></paper-spinner>
+<paper-spinner active class="big"></paper-spinner>
+<paper-spinner active class="thick"></paper-spinner>
+<paper-spinner active class="thin"></paper-spinner>
+<paper-spinner active class="color"></paper-spinner>
 
+**Update (Nov 14, 2014):** After the original implementation was published, observant readers have discovered that as the spinner was rotating, there is a small but noticable transparent gap in the middle of the arc. This is because in many browsers (including Chrome 38, Safari 7.1, and IE 11), the gap between two adjacent `display: inline-block; overflow: hidden;` elements is visible while the container is playing a rotation animation (Firefox is the only browser that doesn't have this issue).
 
-[`<paper-spinner>`]: https://github.com/polymerlabs/paper-spinner
+To overcome this unfortunate rendering issue, I added a "patch" (another `div.circle`) to cover up the gap. The difference can be observed below (the spinner on the right has the patch).
+
+<paper-spinner active class="no-patch"></paper-spinner>
+<paper-spinner active></paper-spinner>
+
+[`<paper-spinner>`]: https://github.com/Polymer/paper-spinner

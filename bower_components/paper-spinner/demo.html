@@ -14,30 +14,40 @@
   <title></title>
   <script src="../webcomponentsjs/webcomponents.js"></script>
   <link rel="import" href="paper-spinner.html">
-</head>
-<body>
   <style shim-shadowdom>
-  paper-spinner.big-spinner {
-    width: 100px;
-    height: 100px;
+  paper-spinner.blue::shadow .circle {
+    border-color: #4285f4;
   }
 
-  paper-spinner.big-spinner::shadow .circle {
-    border-color: purple;
-    border-width: 20px;
+  paper-spinner.red::shadow .circle {
+    border-color: #db4437;
+  }
+
+  paper-spinner.yellow::shadow .circle {
+    border-color: #f4b400;
+  }
+
+  paper-spinner.green::shadow .circle {
+    border-color: #0f9d58;
   }
   </style>
+</head>
+<body>
   <template is="auto-binding">
-    <h2>Default Spinner</h2>
-    <paper-spinner id="spinner" active></paper-spinner>
+    <paper-spinner class="blue" active></paper-spinner>
+    <paper-spinner class="red" active></paper-spinner>
+    <paper-spinner class="yellow" active></paper-spinner>
+    <paper-spinner class="green" active></paper-spinner>
+    <paper-spinner active></paper-spinner>
     <button on-tap="{{toggle}}">Toggle</button>
-    <h2>Custom Spinner</h2>
-    <paper-spinner class="big-spinner" active></paper-spinner>
   </template>
   <script>
     var t = document.querySelector('template');
     t.toggle = function() {
-      t.$.spinner.active = !t.$.spinner.active;
+      var spinners = document.querySelectorAll('paper-spinner');
+      Array.prototype.forEach.call(spinners, function(spinner) {
+        spinner.active = !spinner.active;
+      });
     }
   </script>
 </body>

@@ -4,8 +4,7 @@ title: Welcome to Polymer!
 tags: polymer web uber
 ---
 
-<link rel="import" href="/bower_components/polymer-chauffeur/polymer-chauffeur.html">
-<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/polymer-chauffeur/elements/polymer-chauffeur.html">
 
 _Last month I started an internship with the [Polymer](https://www.polymer-project.org/) team at Google for my last [co-op term](https://uwaterloo.ca/hire/), and I'm starting a tech blog to showcase some of the things that I'm working on. Although I have already published to several changes to the [Polymer](https://github.com/Polymer) and [PolymerLabs](https://github.com/PolymerLabs) GitHub orgs, I am retroactively writing posts to cover some of the first Polymer elements I've created. This blog itself is a work in progress, so if you don't like the design, stick around and give me some suggestions!_
 
@@ -52,16 +51,14 @@ Now let's put these components together with a [`<google-map>`](https://github.c
 {% highlight html %}
 {% raw %}
 <template is="auto-binding">
-  <paper-input
-    floatingLabel
-    id="paper_input"
-    label="Location"
-    value="345 Spear St. San Francisco">
-  </paper-input>
+  <div horizontal layout>
+    <core-icon icon="search" id="core_icon"></core-icon>
+    <input is="core-input" placeholder="Location" id="query" value="345 Spear St. San Francisco" flex>
+  </div>
 
   <google-map-search
     map="{{map}}"
-    query="{{$.paper_input.value}}"
+    query="{{$.query.value}}"
     result="{{result}}">
   </google-map-search>
 
@@ -90,16 +87,14 @@ Demo:
 
 {% raw %}
 <template is="auto-binding">
-  <paper-input
-    floatingLabel
-    id="paper_input"
-    label="Location"
-    value="345 Spear St. San Francisco">
-  </paper-input>
+  <div horizontal layout>
+    <core-icon icon="search" id="core_icon"></core-icon>
+    <input is="core-input" placeholder="Location" id="query" value="345 Spear St. San Francisco" flex>
+  </div>
 
   <google-map-search
     map="{{map}}"
-    query="{{$.paper_input.value}}"
+    query="{{$.query.value}}"
     result="{{result}}">
   </google-map-search>
 
@@ -123,7 +118,7 @@ Demo:
 </template>
 {% endraw %}
 
-The final component, [`<polymer-chauffeur>`](https://github.com/polymerlabs/polymer-chauffeur), uses all of these components and adds [`<paper-tabs>`](https://github.com/polymer/paper-tabs) and [`<core-pages>`](https://github.com/polymer/core-pages) to switch between [`<uber-products>`] and [`<uber-estimates-time>`].
+The final component, [`<polymer-chauffeur>`](https://github.com/PolymerLabs/polymer-chauffeur/blob/gh-pages/elements/polymer-chauffeur.html), uses all of these components and adds [`<paper-tabs>`](https://github.com/polymer/paper-tabs) and [`<core-pages>`](https://github.com/polymer/core-pages) to switch between [`<uber-products>`] and [`<uber-estimates-time>`].
 
 {% highlight html %}
 <polymer-chauffeur
@@ -145,5 +140,5 @@ That's it for this post. Next time I'll show you how to use [`<geojson-data>`](h
 
 **Note:** Don't try to use the server token in the above examples on your own site - it is restricted to requests from this domain only.
 
-[`<uber-products>`]: https://github.com/PolymerLabs/uber-products
-[`<uber-estimates-time>`]: https://github.com/PolymerLabs/uber-estimates-time
+[`<uber-products>`]: https://github.com/PolymerLabs/polymer-chauffeur/blob/gh-pages/elements/uber-products.html
+[`<uber-estimates-time>`]: https://github.com/PolymerLabs/polymer-chauffeur/blob/gh-pages/elements/uber-estimates-time.html

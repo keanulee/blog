@@ -1,25 +1,18 @@
 {
-  "name": "keanulee.github.io",
-  "version": "0.1.0",
-  "authors": [
-    "Keanu Lee"
-  ],
-  "description": "Keanu's tech blog.",
-  "homepage": "https://keanulee.github.io/",
+  "name": "blog.keanulee.com",
+  "private": true,
   "dependencies": {
-    "polymer": "Polymer/polymer#>=0.4.0 <1.0.0",
-    "core-elements": "Polymer/core-elements#>=0.4.0 <1.0.0",
-    "paper-elements": "Polymer/paper-elements#>=0.4.0 <1.0.0",
-    "google-map": "GoogleWebComponents/google-map#master",
-    "polymer-chauffeur": "PolymerLabs/polymer-chauffeur#master",
-    "geojson-data": "PolymerLabs/geojson-data#master",
-    "paper-spinner": "PolymerLabs/paper-spinner#master"
+    "webcomponentsjs": "Polymer/webcomponentsjs#^0.5.1",
+    "polymer": "Polymer/polymer#^0.5.1",
+    "core-elements": "Polymer/core-elements#^0.5.1",
+    "paper-elements": "Polymer/paper-elements#^0.5.1",
+    "google-map": "GoogleWebComponents/google-map#^0.3.2",
+    "polymer-chauffeur": "PolymerLabs/polymer-chauffeur#gh-pages",
+    "geojson-data": "PolymerLabs/geojson-data#master"
   },
   "resolutions": {
-    "google-map": "master",
-    "google-apis": "master",
-    "polymer": ">=0.4.0 <1.0.0",
-    "platform": "^0.4.0",
-    "core-component-page": "^0.4.0"
+    "polymer": "^0.5.1",
+    "core-shared-lib": "^0.5.0",
+    "core-component-page": "^0.5.0"
   }
 }
