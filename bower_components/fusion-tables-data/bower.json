@@ -13,7 +13,7 @@
   "main": "fusion-tables-data.html",
   "homepage": "https://polymerlabs.github.io/fusion-tables-data/",
   "dependencies": {
-    "polymer": "Polymer/polymer#>=0.4.0 <1.0.0",
-    "core-ajax": "Polymer/core-ajax#>=0.4.0 <1.0.0"
+    "polymer": "Polymer/polymer#^0.5.1",
+    "core-ajax": "Polymer/core-ajax#^0.5.1"
   }
 }

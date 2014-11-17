@@ -9,20 +9,16 @@
     "core-icons": "Polymer/core-icons#^0.5.1",
     "core-input": "Polymer/core-input#^0.5.1",
     "core-pages": "Polymer/core-pages#^0.5.1",
-    "google-map": "GoogleWebComponents/google-map#^0.3.2",
+    "google-map": "GoogleWebComponents/google-map#^0.4.0",
     "paper-tabs": "Polymer/paper-tabs#^0.5.1",
     "paper-button": "Polymer/paper-button#^0.5.1"
   },
-  "resolutions": {
-    "polymer": "^0.5.1",
-    "core-component-page": "^0.5.0"
-  },
   "homepage": "https://github.com/PolymerLabs/polymer-chauffeur",
-  "_release": "cc47481617",
+  "_release": "4846bc4244",
   "_resolution": {
     "type": "branch",
     "branch": "gh-pages",
-    "commit": "cc474816170a8ebf2bca2440b5e63748b73c8a56"
+    "commit": "4846bc4244544f3882dc693afcd1d6453f653d11"
   },
   "_source": "git://github.com/PolymerLabs/polymer-chauffeur.git",
   "_target": "gh-pages",
